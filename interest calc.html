@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Interest Calculator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+}
+
+.card{
+    width:400px;
+    background:#fff;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+    color:#4a4a4a;
+    margin-bottom:20px;
+}
+
+table{
+    width:100%;
+}
+
+td{
+    padding:10px;
+}
+
+label{
+    font-weight:600;
+    color:#555;
+}
+
+input[type="number"]{
+    width:100%;
+    padding:12px;
+    border:2px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+    transition:0.3s;
+}
+
+input[type="number"]:focus{
+    outline:none;
+    border-color:#667eea;
+}
+
+input[type="submit"]{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+input[type="submit"]:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 15px rgba(102,126,234,0.4);
+}
+
+#show{
+    margin-top:20px;
+    padding:15px;
+    border-radius:12px;
+    background:#f4f7ff;
+    color:#333;
+    line-height:1.8;
+    font-weight:500;
+}
+
+.result{
+    color:#28a745;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.total{
+    color:#e63946;
+    font-size:20px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <form onsubmit="return Calculate()">
+        <h2>💰 Simple Interest Calculator</h2>
+
+        <table>
+            <tr>
+                <td><label>Principal Amount (₹)</label></td>
+                <td><input type="number" id="amount" required></td>
+            </tr>
+
+            <tr>
+                <td><label>Interest Rate (%)</label></td>
+                <td><input type="number" id="rate" required></td>
+            </tr>
+
+            <tr>
+                <td><label>Time (Months)</label></td>
+                <td><input type="number" id="time" required></td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Calculate Interest">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <div id="show"></div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<script>
+function Calculate() {
+
+    let p = parseFloat(document.getElementById("amount").value);
+    let r = parseFloat(document.getElementById("rate").value);
+    let t = parseFloat(document.getElementById("time").value);
+
+    let si = (p * r * t) / 100;
+    let total = p + si;
+
+    document.getElementById("show").innerHTML = `
+        <strong>Principal Amount:</strong> ₹${p}<br>
+        <strong>Interest Rate:</strong> ${r}%<br>
+        <strong>Time:</strong> ${t} Months<br>
+        <hr>
+        <div class="result">Simple Interest = ₹${si.toFixed(2)}</div>
+        <div class="total">Total Amount = ₹${total.toFixed(2)}</div>
+    `;
+
+    return false;
+}
+</script>
+
+</body>
+</html>
